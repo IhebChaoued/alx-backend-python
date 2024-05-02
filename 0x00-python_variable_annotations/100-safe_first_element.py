@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """safe_first_element: Safely retrieve the first element from a sequence"""
 
-from typing import Sequence, Any, Union
+import typing
 
 
 def safe_first_element(lst: Sequence) -> Union[Any, None]:
