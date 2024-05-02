@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""safe_first_element: Safely retrieve the first element from a sequence"""
+"""safe_first_element"""
 
-import typing
+from typing import Sequence, Any, Union
 
 
-def safe_first_element(lst: Sequence) -> Union[Any, None]:
-    """Returns the first element of 'lst' or None if 'lst' is empty."""
+def safe_first_element(lst: Sequence[Any]) -> Union[Any, None]:
+    """Return the first element of a sequence if it exists, otherwise None"""
     if lst:
         return lst[0]
     else:
