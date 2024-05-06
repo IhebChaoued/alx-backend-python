@@ -3,15 +3,14 @@
 
 import time
 from typing import Callable
+from typing import List
+from asyncio import run
+from .1-concurrent_coroutines import wait_n
 
 
 def measure_time(n: int, max_delay: int) -> float:
     """Measures the total execution time for wait_n"""
     start_time = time.time()
-    
-    from typing import List
-    from asyncio import run
-    from .1-concurrent_coroutines import wait_n
     
     delays: List[float] = run(wait_n(n, max_delay))
     
