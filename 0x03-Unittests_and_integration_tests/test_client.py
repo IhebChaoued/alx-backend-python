@@ -16,14 +16,16 @@ class TestGithubOrgClient(unittest.TestCase):
     ])
     @patch('client.get_json')
     def test_org(self, input, mock_get_json):
-        """Test that GithubOrgClient.org returns the correct value"""
+        """GithubOrgClient.org: returns the correct value"""
         test_payload = {"login": input}
         mock_get_json.return_value = test_payload
 
         test_class = GithubOrgClient(input)
-        result = test_class.org  # Access the property without parentheses
+        result = test_class.org
 
-        mock_get_json.assert_called_once_with(f'https://api.github.com/orgs/{input}')
+        mock_get_json.assert_called_once_with(
+                f'https://api.github.com/orgs/{input}'
+                )
         self.assertEqual(result, test_payload)
 
 
