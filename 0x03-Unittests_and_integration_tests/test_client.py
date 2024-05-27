@@ -2,8 +2,8 @@
 """Unit tests for GithubOrgClient"""
 
 import unittest
-from unittest.mock import patch, Mock
-from parameterized import parameterized
+from unittest.mock import patch, PropertyMock, Mock
+from parameterized import parameterized, parameterized_class
 from client import GithubOrgClient
 
 
