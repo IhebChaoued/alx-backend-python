@@ -52,13 +52,19 @@ class TestGithubOrgClient(unittest.TestCase):
         ]
         mock_get_json.return_value = test_payload
 
-        with patch('client.GithubOrgClient._public_repos_url', new_callable=PropertyMock) as mock_public_repos_url:
-            mock_public_repos_url.return_value = "https://api.github.com/orgs/test/repos"
+        with patch(
+                'client.GithubOrgClient._public_repos_url',
+                new_callable=PropertyMock
+                ) as mock_public_repos_url:
+            mock_public_repos_url.return_value = \
+                    "https://api.github.com/orgs/test/repos"
 
             test_class = GithubOrgClient("test")
             result = test_class.public_repos
 
-            mock_get_json.assert_called_once_with("https://api.github.com/orgs/test/repos")
+            mock_get_json.assert_called_once_with(
+                    "https://api.github.com/orgs/test/repos"
+                    )
             mock_public_repos_url.assert_called_once()
 
             self.assertEqual(result, ["repo1", "repo2"])
@@ -77,7 +83,7 @@ class TestGithubOrgClient(unittest.TestCase):
 
 
 @parameterized_class([
-    {"org_payload": org_payload, "repos_payload": repos_payload, 
+    {"org_payload": org_payload, "repos_payload": repos_payload,
      "expected_repos": expected_repos, "apache2_repos": apache2_repos}
 ])
 class TestIntegrationGithubOrgClient(unittest.TestCase):
@@ -88,7 +94,7 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
         """Set up class for integration tests"""
         cls.get_patcher = patch('requests.get')
         mock_get = cls.get_patcher.start()
-        
+
         mock_get.side_effect = cls.get_side_effect
 
     @classmethod
